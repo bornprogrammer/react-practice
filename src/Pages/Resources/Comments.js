@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { commentSlice, fetchComments, getAllComments, getCommentError, getCommentStatus } from "../../store/reducers/commentSlice";
 
 const Comments = () => {
-    const [comments, setComments] = useState([]);
+
+    const dispatch = useDispatch();
+    const comments = useSelector(getAllComments);
+    const commentError = useSelector(getCommentError);
+    const commentStatus = useSelector(getCommentStatus);
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/comments").then((response) => response.json()).then((data) => {
-            setComments(data);
-        });
-    }, []);
+        if (commentStatus === "idle") {
+            dispatch(fetchComments());
+        }
+    }, [commentStatus, dispatch]);
     return (
         <div>
             List of Comments

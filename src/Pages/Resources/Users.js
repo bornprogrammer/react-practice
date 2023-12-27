@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllUsers, getUserError, getUserStatus, fetchUser } from "../../store/reducers/userSlice";
 const Users = () => {
-    const [users, setUsers] = useState([]);
-    // useParams
+
+    const dispatch = useDispatch();
+    const users = useSelector(getAllUsers);
+    const error = useSelector(getUserError);
+    const userStatus = useSelector(getUserStatus);
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/users").then((response) => response.json()).then((data) => {
-            setUsers(data);
-        });
-    }, []);
+        if (userStatus === "idle") {
+            dispatch(fetchUser());
+        }
+    }, [userStatus, dispatch]);
     return (
         <div>
             List of Users

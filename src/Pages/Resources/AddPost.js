@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts, selectPostError, selectPostStatus, selectAllPosts } from "../../store/reducers/postSlice";
+import { fetchPosts, getAllPosts, getPostError, getPostStatus } from "../../store/reducers/postSlice";
 
 const Posts = () => {
     const dispatch = useDispatch();
-    const posts = useSelector(selectAllPosts);
-    const postsStatus = useSelector(selectPostStatus);
-    const postsError = useSelector(selectPostError);
+    const posts = useSelector(getAllPosts);
+    const postsStatus = useSelector(getPostStatus);
+    const postsError = useSelector(getPostError);
 
     useEffect(() => {
         if (postsStatus === "idle") {
@@ -16,7 +16,7 @@ const Posts = () => {
     }, [postsStatus, dispatch]);
     return (
         <div style={{ marginTop: "50px", marginLeft: "20px" }}>
-            All Posts
+            All Postsss
             <div>
                 {
                     posts.map((post) => {

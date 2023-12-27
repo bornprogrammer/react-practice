@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllContacts, contactSlice, addContact } from "../store/contactSlice";
+import { selectAllContacts, contactSlice, addContact } from "../store/reducers/contactSlice";
 
 const ContactPromise = () => {
 
     const dispatch = useDispatch();
 
     const contacts = useSelector(selectAllContacts);
- 
+
     const addContactHandler = () => {
         dispatch(addContact());
     }

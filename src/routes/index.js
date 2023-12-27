@@ -11,6 +11,7 @@ import Users from "../Pages/Resources/Users";
 import Layout from "../components/Layout";
 import { useRoutes } from "react-router-dom";
 import Loadable from "../components/Loadable";
+import PostDetail from "../Pages/Resources/PostDetail";
 
 const AboutReadonly = Loadable(lazy(() => import("../Pages/About")));
 
@@ -43,9 +44,18 @@ const Routes = {
                     element: <Comments />
                 },
                 {
-                    // path: "posts",
-                    index: true,
-                    element: <Posts />
+                    path: "posts",
+                    // index: true,
+                    element: <Posts />,
+                },
+                {
+                    path: "addposts",
+                    // index: true,
+                    element: <Posts />,
+                },
+                {
+                    path: "posts/:postId",
+                    element: <PostDetail />,
                 },
                 {
                     path: "photos",

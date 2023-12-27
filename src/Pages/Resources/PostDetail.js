@@ -1,19 +1,16 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { selectPostById } from "../../store/reducers/postSlice";
 
 const PostDetail = () => {
-    const [post, setPost] = useState({});
-    const params = useParams();
+    const { postId } = useParams();
+    const postDetails = useSelector((state) => selectPostById(state, postId));
 
-    useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`).then((response) => response.json()).then((data) => {
-            setPost(data);
-        });
-    }, [params.id]);
+    // const postDetails = posts.find((post) => post.id === Number(postId));
     return (
-        <div>
-            This is post detail {post.title}
+        <div style={{ marginTop: "50px", marginLeft: "20px" }}>
+            <div>title :  {postDetails.title}</div>
+            <div>body :  {postDetails.body}</div>
         </div>
     )
 };

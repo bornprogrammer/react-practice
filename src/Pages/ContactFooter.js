@@ -1,6 +1,6 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllContacts } from "../store/contactSlice";
+import { selectAllContacts } from "../store/reducers/contactSlice";
 
 const ContactFooter = () => {
 

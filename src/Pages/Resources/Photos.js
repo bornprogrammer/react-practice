@@ -1,14 +1,23 @@
-import { useEffect, useState } from "react";
-
+import { useGetPhotosQuery, selectAllPhotos } from '../../store/reducers/photoSlice'
+import { useSelector } from "react-redux";
 
 const Photos = () => {
-    const [photos, setPhotos] = useState([]);
+    const { isLoading, isSuccess, isError } = useGetPhotosQuery();
 
-    useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/photos").then((response) => response.json()).then((data) => {
-            setPhotos(data);
-        });
-    }, []);
+    const photos = useSelector(selectAllPhotos);
+
+    if (isLoading) {
+        return (
+            <div>This is loading</div>
+        )
+    }
+
+    if (isError) {
+        return (
+            <div>This is error</div>
+        )
+    }
+
     return (
         <div>
             List of Photos
@@ -20,7 +29,6 @@ const Photos = () => {
                                 Photo Name : {photo.title}
                                 <img src={photo.thumbnailUrl} alt="nothing" />
                             </div>
-
                         )
                     })
                 }
