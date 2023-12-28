@@ -7,6 +7,7 @@ import commentSlice from "./commentSlice";
 import postSlice from "./postSlice";
 import listMetaDataSlice from "./listMetaDataSlice";
 import apiSlice from '../apiSlice';
+import selectorDemoSlice from './createSelectorDemoSlice';
 
 // ==============================|| COMBINE REDUCERS ||============================== //
 
@@ -15,6 +16,7 @@ const reducers = combineReducers({
     users: userSlice,
     comments: commentSlice,
     posts: postSlice,
+    selectorDemo: selectorDemoSlice,
     listMetaData: listMetaDataSlice,
     [apiSlice.reducerPath]: apiSlice.reducer
 });
