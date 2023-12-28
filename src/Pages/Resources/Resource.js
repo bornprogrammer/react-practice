@@ -24,6 +24,9 @@ const Resource = () => {
                     <div>
                         <Link to="comments">Comments</Link>
                     </div>
+                    <div>
+                        <Link to="todo">Todo</Link>
+                    </div>
                 </div>
             </div>
             <div style={{ float: "clear" }}>

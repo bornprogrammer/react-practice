@@ -11,7 +11,7 @@ export const photoApiSlice = apiSlice.injectEndpoints({
             transformResponse: (responseData) => {
                 return photoAdapter.setAll(initialState, responseData.slice(0, 10));
             },
-            keepUnusedDataFor: 15
+            keepUnusedDataFor: 0
         }),
     })
 });
@@ -20,13 +20,10 @@ export const { useGetPhotosQuery } = photoApiSlice;
 
 const selectPhotosResult = photoApiSlice.endpoints.getPhotos.select();
 
-console.log("selectPhotosResult", selectPhotosResult);
-
 // create memoized selector
 
 const selectPhotosData = createSelector(selectPhotosResult,
     (photoData) => {
-        console.log("photoData", photoData);
         return photoData.data;
     } // normalized comma seperated ids with entities
 );

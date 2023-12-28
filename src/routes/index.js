@@ -12,6 +12,7 @@ import Layout from "../components/Layout";
 import { useRoutes } from "react-router-dom";
 import Loadable from "../components/Loadable";
 import PostDetail from "../Pages/Resources/PostDetail";
+import Todo from "../Pages/Resources/Todo";
 
 const AboutReadonly = Loadable(lazy(() => import("../Pages/About")));
 
@@ -69,6 +70,10 @@ const Routes = {
                 {
                     path: "albums",
                     element: <Albums />
+                },
+                {
+                    path: "todo",
+                    element: <Todo />
                 }
             ]
         }
